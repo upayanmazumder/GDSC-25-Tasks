@@ -1,7 +1,7 @@
 .footer {
-    background-color: black;
-    color: white;
+    background-color: var(--footer-background-color);
     text-align: center;
     bottom: 0;
     width: 100%;
+    transition: background-color 0s;
 }
