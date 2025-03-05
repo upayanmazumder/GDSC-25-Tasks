@@ -6,6 +6,7 @@
     border-bottom: 2px solid currentColor;
     font-size: 1rem;
     background-color: var(--header-background-color);
+    font-size: 1.1rem;
 }
 
 .header nav ul {
@@ -36,13 +37,12 @@
     border: none;
     background: none;
     cursor: pointer;
-    font-size: 1rem;
-    font-weight: 500;
 }
 
 .auth button:hover,
 nav a:hover {
     text-decoration: underline;
+    box-shadow: none;
 }
 
 .header li {

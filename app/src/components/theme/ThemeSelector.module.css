@@ -1,0 +1,84 @@
+.themeButton {
+    background: transparent;
+    color: var(--body);
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.themeButton:hover {
+    opacity: 0.8;
+    box-shadow: none;
+    background: transparent;
+}
+
+.dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(15px);
+    background-color: rgba(42, 42, 42, 0.586);
+}
+
+.dialogContent {
+    background: var(--background);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 500px;
+}
+
+.themeOptions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+}
+
+.themeOption {
+    background: var(--secondaryBackground);
+    color: var(--text);
+    padding: 10px 15px;
+    border: 2px solid var(--primary);
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.themeOption:hover {
+    background: var(--primary);
+    color: var(--body);
+}
+
+.active {
+    background: var(--primary);
+    color: var(--body);
+    font-weight: bold;
+}
+
+@media (max-width: 600px) {
+    .themeButton {
+        padding: 8px 12px;
+    }
+
+    .dialogContent {
+        padding: 15px;
+    }
+
+    .themeOption {
+        padding: 8px 12px;
+    }
+}
