@@ -45,7 +45,12 @@ export default function PostDetails() {
         {comments.length > 0 ? (
           comments.map((comment) => (
             <li key={comment.id}>
-              <strong>{comment.user.username}</strong>: {comment.body}
+              <strong 
+                style={{ color: "blue", cursor: "pointer" }} 
+                onClick={() => navigate(`/profile/${comment.user.id}`)}
+              >
+                {comment.user.username}
+              </strong>: {comment.body}
             </li>
           ))
         ) : (

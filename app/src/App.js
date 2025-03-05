@@ -4,6 +4,7 @@ import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import PostContent from "./pages/PostContent";
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<PrivateRoute><Home /></PrivateRoute>} />
           <Route path="/post/:postId" element={<PrivateRoute><PostContent /></PrivateRoute>} /> 
+          <Route path="/profile/:userId" element={<PrivateRoute><ProfilePage /></PrivateRoute>} /> 
         </Routes>
       </Router>
     </AuthProvider>
