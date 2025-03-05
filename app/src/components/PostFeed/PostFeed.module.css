@@ -4,99 +4,102 @@
     align-items: center;
     gap: 1rem;
     padding: 1rem;
-  }
+}
 
-  .container a {
+.container a {
     color: var(--text-color);
-  }
-  
-  .controls {
+}
+
+.controls {
     display: flex;
     gap: 0.5rem;
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
-  }
-  
-  .input,
-  .select {
+}
+
+.input,
+.select {
     padding: 0.5rem;
     border: 1px solid #ccc;
     border-radius: 4px;
-  }
-  
-  .postList {
+}
+
+.postList {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1rem;
     width: 100%;
     max-width: 800px;
-  }
-  
-  .postLink {
+}
+
+.postLink {
     text-decoration: none;
-  }
-  
-  .postCard {
+}
+
+.postCard {
     padding: 1rem;
     border: 1px solid #ddd;
     border-radius: 8px;
-    transition: transform 0.3s ease-in-out;
-  }
-  
-  .postCard:hover {
-    transform: scale(1.02);
-  }
-  
-  .postTitle {
+    transition: all 0.3s ease-in-out;
+    background-color: rgba(35, 35, 35, 0.4);
+}
+
+.postCard:hover {
+    transform: scale(1.01);
+    box-shadow: 0 0 12px 8px rgb(59 59 59 / 44%);
+    background-color: rgba(35, 35, 35, 0.5);
+}
+
+.postTitle {
     font-size: 1.25rem;
     margin-bottom: 0.5rem;
-  }
-  
-  .postBody {
+}
+
+.postBody {
     font-size: 1rem;
-  }
-  
-  .postStats {
+}
+
+.postStats {
     display: flex;
     justify-content: space-between;
     font-size: 0.875rem;
     margin-top: 0.5rem;
-  }
-  
-  .postTags {
+}
+
+.postTags {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
     margin-top: 0.5rem;
-  }
-  
-  .tag {
+}
+
+.tag {
     font-size: 0.875rem;
     padding: 0.25rem 0.5rem;
     border: 1px solid #ddd;
     border-radius: 4px;
-  }
-  
-  .pagination {
+}
+
+.pagination {
     display: flex;
     gap: 1rem;
     align-items: center;
-  }
-  
-  .button {
+}
+
+.button {
     padding: 0.5rem 1rem;
     border: none;
     cursor: pointer;
     border-radius: 4px;
     transition: transform 0.2s;
-  }
-  
-  .button:disabled {
+}
+
+.button:disabled {
     opacity: 0.5;
     cursor: not-allowed;
-  }
-  
-  .button:hover:not(:disabled) {
+}
+
+.button:hover:not(:disabled) {
     transform: scale(1.05);
-  }
+}
