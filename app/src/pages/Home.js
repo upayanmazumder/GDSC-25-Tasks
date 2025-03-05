@@ -1,13 +1,21 @@
+import { useAuth } from "../Context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
+const Home = () => {
+  const { logout } = useAuth();
+  const navigate = useNavigate();
 
-function App() {
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
+
   return (
-    <>
-      <main>
-        <h1>Home</h1>
-      </main>
-    </>
+    <div>
+      <h2>Welcome to the Protected Page</h2>
+      <button onClick={handleLogout}>Logout</button>
+    </div>
   );
-}
+};
 
-export default App;
+export default Home;
