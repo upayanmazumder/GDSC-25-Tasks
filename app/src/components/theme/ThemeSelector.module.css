@@ -1,0 +1,25 @@
+.themeContainer {
+    display: flex;
+    gap: var(--margin-small);
+    align-items: center;
+}
+
+.themeToggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: var(--font-size-large);
+    color: var(--text-color);
+    padding: var(--padding-small);
+    border-radius: var(--border-radius-small);
+    transition: background-color var(--transition-small), color var(--transition-small);
+}
+
+.themeToggle:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.themeToggle.active {
+    background-color: var(--primary-color);
+    color: #fff;
+}
