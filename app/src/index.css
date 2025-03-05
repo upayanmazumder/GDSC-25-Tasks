@@ -32,22 +32,20 @@
   --screen-horizontal-margin: 100px;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-      --body-background-color: #cacaca;
-      --header-background-color: #919191;
-      --header-initial-background-color: #d0d0d0;
-      --footer-background: #757575;
-      --sidebar-background-color: rgba(240, 240, 240, 0.9);
-      --form-background-color: rgba(240, 240, 240, 0.7);
-      --glass-background-color: rgba(0, 0, 0, 0.07);
-      --glass-background-hover-color: rgba(0, 0, 0, 0.1);
-      --scrollbar-background-color: #5b5b5b;
+.light-theme {
+    --body-background-color: #cacaca;
+    --header-background-color: #919191;
+    --header-initial-background-color: #d0d0d0;
+    --footer-background: #757575;
+    --sidebar-background-color: rgba(240, 240, 240, 0.9);
+    --form-background-color: rgba(240, 240, 240, 0.7);
+    --glass-background-color: rgba(0, 0, 0, 0.07);
+    --glass-background-hover-color: rgba(0, 0, 0, 0.1);
+    --scrollbar-background-color: #5b5b5b;
 
-      --text-color: #000000;
-      --link-text: #1E90FF;
-      --link-hover-text: #00BFFF;
-  }
+    --text-color: #000000;
+    --link-text: #1E90FF;
+    --link-hover-text: #00BFFF;
 }
 
 @media (max-width: 1024px) {
