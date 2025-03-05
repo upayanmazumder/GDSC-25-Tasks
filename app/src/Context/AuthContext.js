@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
-
+import Header from "../components/Header/Header";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -29,6 +29,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider value={{ user, login, logout }}>
+      <Header />
       {children}
     </AuthContext.Provider>
   );
