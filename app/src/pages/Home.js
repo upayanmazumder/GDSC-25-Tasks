@@ -12,10 +12,9 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <main>
       <PostFeed />
-      <button onClick={handleLogout}>Logout</button>
-    </div>
+    </main>
   );
 };
 

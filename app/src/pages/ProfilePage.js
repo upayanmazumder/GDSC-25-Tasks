@@ -2,7 +2,9 @@ import Profile from "../components/Profile/Profile";
 
 const ProfilePage = () => {
     return (
-        <Profile />
+        <main>
+            <Profile />
+        </main>
     );
 }
 
