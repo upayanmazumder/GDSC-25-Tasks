@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./PostFeed.module.css";
+import { BsHandThumbsDown, BsHandThumbsUp } from "react-icons/bs";
 
 const POSTS_PER_PAGE = 10;
 
@@ -69,7 +70,7 @@ export default function PostFeed() {
               <h2 className={styles.postTitle}>{post.title}</h2>
               <p className={styles.postBody}>{post.body}</p>
               <div className={styles.postStats}>
-                <span>👍 {post.reactions?.likes || 0} | 👎 {post.reactions?.dislikes || 0}</span>
+                <span><BsHandThumbsUp /> {post.reactions?.likes || 0} | <BsHandThumbsDown /> {post.reactions?.dislikes || 0}</span>
                 <span>👁️ {post.views}</span>
               </div>
               <div className={styles.postTags}>
