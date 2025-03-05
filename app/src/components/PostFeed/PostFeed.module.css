@@ -103,3 +103,34 @@
 .button:hover:not(:disabled) {
     transform: scale(1.05);
 }
+
+@media (max-width: 600px) {
+    .container {
+        padding: 0;
+        padding-top: 1rem;
+    }
+    .postList {
+        grid-template-columns: 1fr;
+    }
+
+    .postCard {
+        padding: 0.5rem;
+    }
+
+    .postTitle {
+        font-size: 1rem;
+    }
+
+    .postBody {
+        font-size: 0.875rem;
+    }
+
+    .postStats {
+        font-size: 0.75rem;
+    }
+
+    .tag {
+        font-size: 0.75rem;
+        padding: 0.25rem;
+    }
+}
