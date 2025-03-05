@@ -5,7 +5,7 @@
 
 :root {
   --body-background-color: black;
-  --header-background-color: var(--body-background-color);
+  --header-background-color: #25252589;
   --footer-background-color: var(--header-background-color);
 
   --screen-horizontal-margin: 200px;
@@ -52,15 +52,6 @@
   --transition-medium: 0.4s;
   --transition-large: 0.8s;
   --transition-huge: 1.6s;
-}
-
-.light-theme {
-  --body-background-color: rgb(189, 189, 189);
-  --header-background-color: var(--body-background-color);
-
-  --text-color: #000000;
-  --text-link-color: #0f67cf;
-  --text-link-hover-color: #0f5ac3;
 }
 
 @media (max-width: 1024px) {

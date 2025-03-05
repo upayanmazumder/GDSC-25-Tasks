@@ -1,25 +1,68 @@
-.themeContainer {
-    display: flex;
-    gap: var(--margin-small);
-    align-items: center;
-}
-
-.themeToggle {
-    background: none;
+.themeButton {
+    background: transparent;
+    color: var(--body);
+    padding: 10px 15px;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
-    font-size: var(--font-size-large);
-    color: var(--text-color);
-    padding: var(--padding-small);
-    border-radius: var(--border-radius-small);
-    transition: background-color var(--transition-small), color var(--transition-small);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    transition: all 0.3s ease;
 }
 
-.themeToggle:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+.themeButton:hover {
+    opacity: 0.8;
+    box-shadow: none;
+    background-color: transparent;
 }
 
-.themeToggle.active {
-    background-color: var(--primary-color);
-    color: #fff;
+.dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(15px);
+    background-color: rgba(42, 42, 42, 0.586);
+}
+
+.dialogContent {
+    background: var(--background);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.themeOptions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.themeOption {
+    background: var(--secondaryBackground);
+    color: var(--text);
+    padding: 10px 15px;
+    border: 2px solid var(--primary);
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.themeOption:hover {
+    background: var(--primary);
+    color: var(--body);
+}
+
+.active {
+    background: var(--primary);
+    color: var(--body);
+    font-weight: bold;
 }

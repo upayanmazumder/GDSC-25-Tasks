@@ -1,29 +1,54 @@
-import React from "react";
-import styled from "styled-components";
-import { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { ThemeContext } from "./ThemeProvider";
-
-const ThemeButton = styled.button`
-  background: ${({ theme }) => theme.primary};
-  color: ${({ theme }) => theme.body};
-  padding: 10px;
-  margin: 5px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-`;
+import { FaSun, FaMoon, FaWater, FaTree } from "react-icons/fa";
+import styles from "./ThemeSelector.module.css";
 
 const ThemeSelector = () => {
     const { theme, setTheme } = useContext(ThemeContext);
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+    const themes = [
+        { name: "light", icon: <FaSun />, label: "Light" },
+        { name: "dark", icon: <FaMoon />, label: "Dark" },
+        { name: "sea", icon: <FaWater />, label: "Sea" },
+        { name: "forest", icon: <FaTree />, label: "Forest" },
+    ];
+
+    const handleThemeChange = (newTheme) => {
+        setTheme(newTheme);
+        setIsDialogOpen(false);
+    };
 
     return (
-        <div>
-            <ThemeButton onClick={() => setTheme("light")}>Light</ThemeButton>
-            <ThemeButton onClick={() => setTheme("dark")}>Dark</ThemeButton>
-            <ThemeButton onClick={() => setTheme("sea")}>Sea</ThemeButton>
-            <ThemeButton onClick={() => setTheme("forest")}>Forest</ThemeButton>
-            {/* Add more theme buttons as needed */}
-        </div>
+        <>
+            <button
+                className={styles.themeButton}
+                onClick={() => setIsDialogOpen(true)}
+            >
+                Change Theme
+            </button>
+            {isDialogOpen && (
+                <div className={styles.dialog}>
+                    <div className={styles.dialogContent}>
+                        <h2>Select a Theme</h2>
+                        <div className={styles.themeOptions}>
+                            {themes.map((t) => (
+                                <button
+                                    key={t.name}
+                                    className={`${styles.themeOption} ${
+                                        theme === t.name ? styles.active : ""
+                                    }`}
+                                    onClick={() => handleThemeChange(t.name)}
+                                >
+                                    {t.icon}
+                                    {t.label}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            )}
+        </>
     );
 };
 
