@@ -21,8 +21,24 @@ export default function PostFeed() {
 
   useEffect(() => {
     let filtered = posts.filter((post) => post.body.toLowerCase().includes(search.toLowerCase()));
-    if (sortBy === "likes") filtered.sort((a, b) => b.reactions.likes - a.reactions.likes);
-    else if (sortBy === "date") filtered.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+    switch (sortBy) {
+      case "likes":
+        filtered.sort((a, b) => b.reactions.likes - a.reactions.likes);
+        break;
+      case "views":
+        filtered.sort((a, b) => b.views - a.views);
+        break;
+      case "title-asc":
+        filtered.sort((a, b) => a.title.localeCompare(b.title));
+        break;
+      case "title-desc":
+        filtered.sort((a, b) => b.title.localeCompare(a.title));
+        break;
+      default:
+        break;
+    }
+
     setFilteredPosts(filtered);
   }, [search, sortBy, posts]);
 
@@ -39,7 +55,9 @@ export default function PostFeed() {
         />
         <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
           <option value="likes">Most Liked</option>
-          <option value="date">Newest</option>
+          <option value="views">Most Viewed</option>
+          <option value="title-asc">A-Z</option>
+          <option value="title-desc">Z-A</option>
         </select>
       </div>
       <div>
@@ -54,7 +72,7 @@ export default function PostFeed() {
               <p>{post.body}</p>
               <div>
                 <span>👍 {post.reactions?.likes || 0} | 👎 {post.reactions?.dislikes || 0}</span>
-                <span>{new Date(post.createdAt).toLocaleDateString()}</span>
+                <span>👁️ {post.views}</span>
               </div>
               <div>
                 {post.tags.map((tag) => (
