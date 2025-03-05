@@ -55,7 +55,7 @@ const ThemeSelector = () => {
 
   return (
     <div className={styles.themeSelector}>
-      <button onClick={() => setIsDialogOpen(true)}>
+      <button className={styles.selector} onClick={() => setIsDialogOpen(true)}>
         Change Theme ({theme})
       </button>
 

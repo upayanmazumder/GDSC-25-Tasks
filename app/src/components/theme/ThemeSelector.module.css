@@ -82,3 +82,13 @@
         padding: 8px 12px;
     }
 }
+
+.selector {
+    background-color: transparent;
+}
+
+.selector:hover {
+    background-color: transparent;
+    box-shadow: none;
+    cursor: pointer;
+}
