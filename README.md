@@ -1,6 +1,6 @@
 # GDSC-25-Tasks
 
-This repository, created by Upayan Mazumder, is licensed under the MIT License.
+Use username `admin` and password, well, `password`
 
 ## Badges
 
