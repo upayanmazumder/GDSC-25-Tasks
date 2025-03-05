@@ -1,5 +1,6 @@
 import { useAuth } from "../Context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import PostFeed from "../components/PostFeed/PostFeed"
 
 const Home = () => {
   const { logout } = useAuth();
@@ -12,7 +13,7 @@ const Home = () => {
 
   return (
     <div>
-      <h2>Welcome to the Protected Page</h2>
+      <PostFeed />
       <button onClick={handleLogout}>Logout</button>
     </div>
   );
