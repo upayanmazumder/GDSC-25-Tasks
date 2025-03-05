@@ -1,0 +1,5 @@
+services:
+  web:
+    image: ghcr.io/upayanmazumder/gdsc-25-tasks:latest
+    ports:
+      - "3000:3000"
