@@ -15,7 +15,7 @@ const Header = () => {
             <div className={headerStyles.auth}>
                 {user ? (
                     <ul>
-                        <li>Welcome, {user.username}</li>
+                        <li>Welcome, <span className={headerStyles.username}>{user.username}</span></li>
                         <li><button onClick={logout}>Logout</button></li>
                     </ul>
                 ) : (
