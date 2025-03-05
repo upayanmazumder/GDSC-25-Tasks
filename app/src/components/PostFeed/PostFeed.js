@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import styles from "./PostFeed.module.css";
 
 const POSTS_PER_PAGE = 10;
 
@@ -45,55 +46,54 @@ export default function PostFeed() {
   const paginatedPosts = filteredPosts.slice((currentPage - 1) * POSTS_PER_PAGE, currentPage * POSTS_PER_PAGE);
 
   return (
-    <div>
-      <div>
+    <div className={styles.container}>
+      <div className={styles.controls}>
         <input
           type="text"
           placeholder="Search posts..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
+          className={styles.input}
         />
-        <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
+        <select value={sortBy} onChange={(e) => setSortBy(e.target.value)} className={styles.select}>
           <option value="likes">Most Liked</option>
           <option value="views">Most Viewed</option>
           <option value="title-asc">A-Z</option>
           <option value="title-desc">Z-A</option>
         </select>
       </div>
-      <div>
+      <div className={styles.postList}>
         {paginatedPosts.map((post) => (
-          <Link
-            to={`/post/${post.id}`}
-            key={post.id}
-            style={{ textDecoration: "none", color: "inherit" }}
-          >
-            <div>
-              <h2>{post.title}</h2>
-              <p>{post.body}</p>
-              <div>
+          <Link to={`/post/${post.id}`} key={post.id} className={styles.postLink}>
+            <div className={styles.postCard}>
+              <h2 className={styles.postTitle}>{post.title}</h2>
+              <p className={styles.postBody}>{post.body}</p>
+              <div className={styles.postStats}>
                 <span>👍 {post.reactions?.likes || 0} | 👎 {post.reactions?.dislikes || 0}</span>
                 <span>👁️ {post.views}</span>
               </div>
-              <div>
+              <div className={styles.postTags}>
                 {post.tags.map((tag) => (
-                  <span key={tag}>#{tag} </span>
+                  <span key={tag} className={styles.tag}>#{tag} </span>
                 ))}
               </div>
             </div>
           </Link>
         ))}
       </div>
-      <div>
+      <div className={styles.pagination}>
         <button
           onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
           disabled={currentPage === 1}
+          className={styles.button}
         >
           Previous
         </button>
-        <span>Page {currentPage}</span>
+        <span className={styles.pageNumber}>Page {currentPage}</span>
         <button
           onClick={() => setCurrentPage((p) => Math.min(p + 1, Math.ceil(filteredPosts.length / POSTS_PER_PAGE)))}
           disabled={currentPage * POSTS_PER_PAGE >= filteredPosts.length}
+          className={styles.button}
         >
           Next
         </button>

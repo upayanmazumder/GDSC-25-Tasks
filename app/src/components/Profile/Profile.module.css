@@ -1,0 +1,56 @@
+.profileContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    max-width: 600px;
+    margin: auto;
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .backButton {
+    align-self: flex-start;
+    border: none;
+    padding: 8px 12px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .backButton:hover {
+    transform: scale(1.05);
+  }
+  
+  .profileImage {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-top: 10px;
+    object-fit: cover;
+  }
+  
+  .profileDetails {
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.5;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .profileContainer {
+      padding: 10px;
+    }
+    .profileDetails {
+      font-size: 16px;
+    }
+  }
