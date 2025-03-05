@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useAuth } from "../Context/AuthContext";
+import { useAuth } from "../../../Context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -15,7 +15,7 @@ const Login = () => {
   };
 
   return (
-    <main>
+    <div>
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <input
@@ -34,7 +34,7 @@ const Login = () => {
         />
         <button type="submit">Login</button>
       </form>
-    </main>
+    </div>
   );
 };
 

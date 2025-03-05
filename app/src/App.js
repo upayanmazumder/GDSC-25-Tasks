@@ -1,8 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./Context/AuthContext";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
-import Login from "./pages/Login";
+
 import Home from "./pages/Home";
+import LoginPage from "./pages/LoginPage";
 import PostContent from "./pages/PostContent";
 import ProfilePage from "./pages/ProfilePage";
 
@@ -11,7 +12,7 @@ function App() {
     <AuthProvider>
       <Router>
         <Routes>
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/" element={<PrivateRoute><Home /></PrivateRoute>} />
           <Route path="/post/:postId" element={<PrivateRoute><PostContent /></PrivateRoute>} /> 
           <Route path="/profile/:userId" element={<PrivateRoute><ProfilePage /></PrivateRoute>} /> 
