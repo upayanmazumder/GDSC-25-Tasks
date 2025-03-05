@@ -42,7 +42,7 @@ export default function PostDetails() {
       <h1 className={styles.title}>{post.title}</h1>
       <p className={styles.body}>{post.body}</p>
       <div className={styles.reactions}>
-        <span><BsHandThumbsUp /> {post.reactions?.likes || 0} | <BsHandThumbsDown />  {post.reactions?.dislikes || 0}</span>
+        <span><BsHandThumbsUp /> {post.reactions?.likes || 0} <BsHandThumbsDown />  {post.reactions?.dislikes || 0}</span>
       </div>
       <h2>Comments</h2>
       <div className={styles.commentsSection}>

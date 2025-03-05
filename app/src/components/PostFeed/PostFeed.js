@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./PostFeed.module.css";
-import { BsHandThumbsDown, BsHandThumbsUp } from "react-icons/bs";
+import { BsEye, BsHandThumbsDown, BsHandThumbsUp } from "react-icons/bs";
 
 const POSTS_PER_PAGE = 10;
+const MAX_BODY_LENGTH = 200;
 
 export default function PostFeed() {
   const [posts, setPosts] = useState([]);
@@ -44,6 +45,8 @@ export default function PostFeed() {
     setFilteredPosts(filtered);
   }, [search, sortBy, posts]);
 
+  const truncateText = (text, maxLength) => (text.length > maxLength ? text.slice(0, maxLength) + "..." : text);
+
   const paginatedPosts = filteredPosts.slice((currentPage - 1) * POSTS_PER_PAGE, currentPage * POSTS_PER_PAGE);
 
   return (
@@ -68,10 +71,10 @@ export default function PostFeed() {
           <Link to={`/post/${post.id}`} key={post.id} className={styles.postLink}>
             <div className={styles.postCard}>
               <h2 className={styles.postTitle}>{post.title}</h2>
-              <p className={styles.postBody}>{post.body}</p>
+              <p className={styles.postBody}>{truncateText(post.body, MAX_BODY_LENGTH)}</p>
               <div className={styles.postStats}>
-                <span><BsHandThumbsUp /> {post.reactions?.likes || 0} | <BsHandThumbsDown /> {post.reactions?.dislikes || 0}</span>
-                <span>👁️ {post.views}</span>
+                <span><BsHandThumbsUp /> {post.reactions?.likes || 0} <BsHandThumbsDown /> {post.reactions?.dislikes || 0}</span>
+                <span><BsEye /> {post.views}</span>
               </div>
               <div className={styles.postTags}>
                 {post.tags.map((tag) => (
