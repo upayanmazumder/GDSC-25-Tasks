@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const POSTS_PER_PAGE = 10;
 
@@ -30,7 +31,12 @@ export default function PostFeed() {
   return (
     <div>
       <div>
-        <input type="text" placeholder="Search posts..." value={search} onChange={(e) => setSearch(e.target.value)} />
+        <input
+          type="text"
+          placeholder="Search posts..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
         <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
           <option value="likes">Most Liked</option>
           <option value="date">Newest</option>
@@ -38,25 +44,41 @@ export default function PostFeed() {
       </div>
       <div>
         {paginatedPosts.map((post) => (
-          <div key={post.id}>
-            <h2>{post.title}</h2>
-            <p>{post.body}</p>
+          <Link
+            to={`/post/${post.id}`}
+            key={post.id}
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
             <div>
-              <span>👍 {post.reactions.likes} | 👎 {post.reactions.dislikes}</span>
-              <span>{new Date(post.createdAt).toLocaleDateString()}</span>
+              <h2>{post.title}</h2>
+              <p>{post.body}</p>
+              <div>
+                <span>👍 {post.reactions?.likes || 0} | 👎 {post.reactions?.dislikes || 0}</span>
+                <span>{new Date(post.createdAt).toLocaleDateString()}</span>
+              </div>
+              <div>
+                {post.tags.map((tag) => (
+                  <span key={tag}>#{tag} </span>
+                ))}
+              </div>
             </div>
-            <div>
-              {post.tags.map((tag) => (
-                <span key={tag}>#{tag}</span>
-              ))}
-            </div>
-          </div>
+          </Link>
         ))}
       </div>
       <div>
-        <button onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))} disabled={currentPage === 1}>Previous</button>
+        <button
+          onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+          disabled={currentPage === 1}
+        >
+          Previous
+        </button>
         <span>Page {currentPage}</span>
-        <button onClick={() => setCurrentPage((p) => Math.min(p + 1, Math.ceil(filteredPosts.length / POSTS_PER_PAGE)))} disabled={currentPage * POSTS_PER_PAGE >= filteredPosts.length}>Next</button>
+        <button
+          onClick={() => setCurrentPage((p) => Math.min(p + 1, Math.ceil(filteredPosts.length / POSTS_PER_PAGE)))}
+          disabled={currentPage * POSTS_PER_PAGE >= filteredPosts.length}
+        >
+          Next
+        </button>
       </div>
     </div>
   );
