@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import LoginPage from "./pages/LoginPage";
 import PostContent from "./pages/PostContent";
 import ProfilePage from "./pages/ProfilePage";
+import NotFoundPage from "./pages/NotFoundPage"
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<PrivateRoute><Home /></PrivateRoute>} />
           <Route path="/post/:postId" element={<PrivateRoute><PostContent /></PrivateRoute>} /> 
           <Route path="/profile/:userId" element={<PrivateRoute><ProfilePage /></PrivateRoute>} /> 
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Router>
     </AuthProvider>
