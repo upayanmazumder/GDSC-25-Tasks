@@ -12,7 +12,7 @@
 .themeButton:hover {
     opacity: 0.8;
     box-shadow: none;
-    background-color: transparent;
+    background: transparent;
 }
 
 .dialog {
@@ -35,11 +35,13 @@
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 500px;
 }
 
 .themeOptions {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     gap: 10px;
 }
 
@@ -65,4 +67,18 @@
     background: var(--primary);
     color: var(--body);
     font-weight: bold;
+}
+
+@media (max-width: 600px) {
+    .themeButton {
+        padding: 8px 12px;
+    }
+
+    .dialogContent {
+        padding: 15px;
+    }
+
+    .themeOption {
+        padding: 8px 12px;
+    }
 }
