@@ -154,12 +154,10 @@ button svg {
 
 ::-webkit-scrollbar-track {
   background: var(--body-background-color);
-  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
   background: #444444;
-  border-radius: 4px;
   border: 2px solid var(--body-background-color);
 }
 
