@@ -1,9 +1,8 @@
 import React, { createContext, useState, useEffect, useContext, useMemo } from "react";
 import { ThemeProvider as StyledThemeProvider, createGlobalStyle } from "styled-components";
 import { FaPalette } from "react-icons/fa";
-import "./ThemeManager.css"; // Add CSS for styling
+import styles from "./ThemeManager.module.css";
 
-// 🎨 Global Styles
 const GlobalStyles = createGlobalStyle`
     body {
         background: ${({ theme }) => theme.background};
@@ -12,7 +11,6 @@ const GlobalStyles = createGlobalStyle`
     }
 `;
 
-// 🎨 Theme Definitions
 const themes = {
   light: { background: "#ffffff", color: "#000000" },
   dark: { background: "#121212", color: "#ffffff" },
@@ -28,7 +26,6 @@ const themes = {
   lava: { background: "#ff4500", color: "#1a1a1a" },
 };
 
-// 🎭 Mood to Theme Mapping
 const moodToTheme = {
   Happy: "pastel",
   Calm: "nature",
@@ -42,10 +39,8 @@ const moodToTheme = {
   Energetic: "lava",
 };
 
-// 🎭 Create Context
 const ThemeContext = createContext();
 
-// 🌟 ThemeProvider Component
 const ThemeManager = ({ children }) => {
   const [selectedMood, setSelectedMood] = useState(localStorage.getItem("mood") || "Happy");
   const theme = useMemo(() => themes[moodToTheme[selectedMood] || "dark"], [selectedMood]);
@@ -64,34 +59,32 @@ const ThemeManager = ({ children }) => {
   );
 };
 
-// 🎭 Mood Selector Component
 const MoodSelector = () => {
   const { selectedMood, setSelectedMood } = useContext(ThemeContext);
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className={`mood-widget ${isOpen ? "open" : "closed"}`}>
-      <button className="mood-button" onClick={() => setIsOpen(!isOpen)} aria-label="Select Mood">
-        <FaPalette size={20} />
+    <div className={`${styles.moodWidget} ${isOpen ? styles.open : ""}`}>
+      <button className={styles.moodButton} onClick={() => setIsOpen(!isOpen)} aria-label="Select Mood">
+        <FaPalette size={15} />
       </button>
-      {isOpen && (
-        <div className="mood-container">
-          <label htmlFor="mood-selector" className="mood-label">Select your mood:</label>
-          <select
-            id="mood-selector"
-            value={selectedMood}
-            onChange={(e) => setSelectedMood(e.target.value)}
-            className="mood-select"
-          >
-            {Object.keys(moodToTheme).map((mood) => (
-              <option key={mood} value={mood}>{mood}</option>
-            ))}
-          </select>
-        </div>
-      )}
+      <div className={styles.moodContainer}>
+        <label htmlFor="mood-selector" className={styles.moodLabel}>
+          Select your mood:
+        </label>
+        <select
+          id="mood-selector"
+          value={selectedMood}
+          onChange={(e) => setSelectedMood(e.target.value)}
+          className={styles.moodSelect}
+        >
+          {Object.keys(moodToTheme).map((mood) => (
+            <option key={mood} value={mood}>{mood}</option>
+          ))}
+        </select>
+      </div>
     </div>
   );
 };
 
-// 🌟 Export Components
 export { ThemeManager, MoodSelector };
