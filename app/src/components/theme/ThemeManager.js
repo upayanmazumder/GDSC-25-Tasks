@@ -1,7 +1,16 @@
 import React, { createContext, useState, useEffect, useContext, useMemo } from "react";
-import { ThemeProvider as StyledThemeProvider } from "styled-components";
+import { ThemeProvider as StyledThemeProvider, createGlobalStyle } from "styled-components";
 import { FaPalette } from "react-icons/fa";
 import "./ThemeManager.css"; // Add CSS for styling
+
+// 🎨 Global Styles
+const GlobalStyles = createGlobalStyle`
+    body {
+        background: ${({ theme }) => theme.background};
+        color: ${({ theme }) => theme.color};
+        transition: background 0.7s cubic-bezier(0.25, 0.8, 0.25, 1), color 0.2s linear;
+    }
+`;
 
 // 🎨 Theme Definitions
 const themes = {
@@ -39,7 +48,6 @@ const ThemeContext = createContext();
 // 🌟 ThemeProvider Component
 const ThemeManager = ({ children }) => {
   const [selectedMood, setSelectedMood] = useState(localStorage.getItem("mood") || "Happy");
-
   const theme = useMemo(() => themes[moodToTheme[selectedMood] || "dark"], [selectedMood]);
 
   useEffect(() => {
@@ -48,7 +56,10 @@ const ThemeManager = ({ children }) => {
 
   return (
     <ThemeContext.Provider value={{ selectedMood, setSelectedMood }}>
-      <StyledThemeProvider theme={theme}>{children}</StyledThemeProvider>
+      <StyledThemeProvider theme={theme}>
+        <GlobalStyles />
+        {children}
+      </StyledThemeProvider>
     </ThemeContext.Provider>
   );
 };

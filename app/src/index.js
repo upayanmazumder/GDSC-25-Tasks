@@ -4,7 +4,6 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ThemeManager, MoodSelector } from "./components/theme/ThemeManager";
-import { GlobalStyles } from './components/theme/GlobalStyles';
 
 import Footer from './components/Footer/Footer';
 
@@ -13,7 +12,6 @@ root.render(
   <React.StrictMode>
     <ThemeManager>
       <MoodSelector />
-      <GlobalStyles />
       <App />
       <Footer />
     </ThemeManager>
