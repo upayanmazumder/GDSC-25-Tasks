@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ThemeProvider } from './components/theme/ThemeProvider';
 import { GlobalStyles } from './components/theme/GlobalStyles';
+import MoodSelector from './components/theme/MoodSelector';
 
 import Footer from './components/Footer/Footer';
 
@@ -13,6 +14,7 @@ root.render(
   <React.StrictMode>
     <ThemeProvider>
     <GlobalStyles />
+      <MoodSelector />
       <App />
       <Footer />
     </ThemeProvider>
