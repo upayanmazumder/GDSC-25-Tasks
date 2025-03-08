@@ -26,6 +26,7 @@
 .moodButton:hover {
   transform: scale(1.1);
   background-color: rgba(0, 0, 0, 0.164);
+  box-shadow: none;
 }
 
 .moodContainer {
