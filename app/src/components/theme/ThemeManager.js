@@ -3,14 +3,6 @@ import { ThemeProvider as StyledThemeProvider, createGlobalStyle } from "styled-
 import { FaPalette } from "react-icons/fa";
 import styles from "./ThemeManager.module.css";
 
-const GlobalStyles = createGlobalStyle`
-    body {
-        background: ${({ theme }) => theme.background};
-        color: ${({ theme }) => theme.color};
-        transition: background 0.7s cubic-bezier(0.25, 0.8, 0.25, 1), color 0.2s linear;
-    }
-`;
-
 const themes = {
   light: { background: "#ffffff", color: "#000000" },
   dark: { background: "#121212", color: "#ffffff" },
@@ -26,24 +18,49 @@ const themes = {
   lava: { background: "#ff4500", color: "#1a1a1a" },
 };
 
-const moodToTheme = {
-  Happy: "pastel",
-  Calm: "nature",
-  Adventurous: "ocean",
-  Romantic: "sunset",
-  Cozy: "coffee",
-  Excited: "neon",
-  Mysterious: "cyberpunk",
-  Focused: "monochrome",
-  Dreamy: "amethyst",
-  Energetic: "lava",
+const moodToThemes = {
+  Happy: ["pastel", "neon"],
+  Calm: ["nature", "ocean"],
+  Adventurous: ["ocean", "lava"],
+  Romantic: ["sunset", "amethyst"],
+  Cozy: ["coffee", "monochrome"],
+  Excited: ["neon", "cyberpunk"],
+  Mysterious: ["cyberpunk", "monochrome"],
+  Focused: ["monochrome", "dark"],
+  Dreamy: ["amethyst", "pastel"],
+  Energetic: ["lava", "neon"],
 };
+
+const moodTransitions = {
+  Happy: "background 0.5s ease-in-out, color 0.3s ease-in",
+  Calm: "background 1s ease, color 0.6s ease",
+  Adventurous: "background 0.7s cubic-bezier(0.4, 0, 0.2, 1), color 0.5s ease-in-out",
+  Romantic: "background 0.8s ease-in-out, color 0.4s ease",
+  Cozy: "background 1.2s ease-in, color 0.6s linear",
+  Excited: "background 0.4s linear, color 0.3s ease-in-out",
+  Mysterious: "background 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), color 0.4s ease",
+  Focused: "background 0.9s ease, color 0.5s ease-in",
+  Dreamy: "background 1.5s ease-in-out, color 0.7s ease-in",
+  Energetic: "background 0.4s ease-out, color 0.2s ease-in-out",
+};
+
+const GlobalStyles = createGlobalStyle`
+  body {
+    background: ${({ theme }) => theme.background};
+    color: ${({ theme }) => theme.color};
+    transition: ${({ theme }) => moodTransitions[theme.mood] || "background 0.7s ease, color 0.3s ease"};
+  }
+`;
 
 const ThemeContext = createContext();
 
 const ThemeManager = ({ children }) => {
   const [selectedMood, setSelectedMood] = useState(localStorage.getItem("mood") || "Happy");
-  const theme = useMemo(() => themes[moodToTheme[selectedMood] || "dark"], [selectedMood]);
+
+  const theme = useMemo(() => {
+    const themesForMood = moodToThemes[selectedMood] || ["dark"];
+    return { ...themes[themesForMood[Math.floor(Math.random() * themesForMood.length)]], mood: selectedMood };
+  }, [selectedMood]);
 
   useEffect(() => {
     localStorage.setItem("mood", selectedMood);
@@ -78,7 +95,7 @@ const MoodSelector = () => {
           onChange={(e) => setSelectedMood(e.target.value)}
           className={styles.moodSelect}
         >
-          {Object.keys(moodToTheme).map((mood) => (
+          {Object.keys(moodToThemes).map((mood) => (
             <option key={mood} value={mood}>{mood}</option>
           ))}
         </select>
