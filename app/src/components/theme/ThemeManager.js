@@ -6,49 +6,44 @@ import styles from "./ThemeManager.module.css";
 const themes = {
   light: { background: "#ffffff", color: "#000000" },
   dark: { background: "#121212", color: "#ffffff" },
-  pastel: { background: "#ffebcd", color: "#5d5d5d" },
-  nature: { background: "#a8dadc", color: "#1d3557" },
-  ocean: { background: "#0077b6", color: "#caf0f8" },
-  sunset: { background: "#ff6f61", color: "#2d3436" },
-  coffee: { background: "#6f4e37", color: "#f5f5dc" },
-  neon: { background: "#0f0", color: "#000" },
-  cyberpunk: { background: "#ff007f", color: "#0c0032" },
-  monochrome: { background: "#555", color: "#eee" },
-  amethyst: { background: "#9966cc", color: "#f0e6f6" },
-  lava: { background: "#ff4500", color: "#1a1a1a" },
+  pastel: { background: "linear-gradient(135deg, #ffebcd, #f5c7c7)", color: "#5d5d5d" },
+  nature: { background: "url('https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg') center/cover no-repeat", color: "#1d3557" },
+  ocean: { background: "url('https://images.pexels.com/photos/2683464/pexels-photo-2683464.jpeg') center/cover no-repeat", color: "#caf0f8" },
+  sunset: { background: "linear-gradient(120deg, #ff6f61, #ff9a8b)", color: "#2d3436" },
+  coffee: { background: "url('https://pbs.twimg.com/media/D0NH51HXgAAVU_g.jpg') center/cover no-repeat", color: "#f5f5dc" },
+  neon: { background: "linear-gradient(90deg, #0ff, #f0f)", color: "#000" },
+  cyberpunk: { background: "url('https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg') center/cover no-repeat", color: "#0c0032" },
+  monochrome: { background: "linear-gradient(160deg, #555, #888)", color: "#eee" },
+  amethyst: { background: "linear-gradient(45deg, #9966cc, #f0e6f6)", color: "#f0e6f6" },
+  excited: { background: "url('https://media.giphy.com/media/l0HU20BZ6LbSEITza/giphy.gif') center/cover no-repeat", color: "#ffffff" },
 };
+
 
 const moodToThemes = {
   Happy: ["pastel", "neon"],
   Calm: ["nature", "ocean"],
-  Adventurous: ["ocean", "lava"],
+  Adventurous: ["ocean", "cyberpunk"],
   Romantic: ["sunset", "amethyst"],
   Cozy: ["coffee", "monochrome"],
-  Excited: ["neon", "cyberpunk"],
+  Excited: ["excited"],
   Mysterious: ["cyberpunk", "monochrome"],
   Focused: ["monochrome", "dark"],
   Dreamy: ["amethyst", "pastel"],
-  Energetic: ["lava", "neon"],
-};
-
-const moodTransitions = {
-  Happy: "background 0.5s ease-in-out, color 0.3s ease-in",
-  Calm: "background 1s ease, color 0.6s ease",
-  Adventurous: "background 0.7s cubic-bezier(0.4, 0, 0.2, 1), color 0.5s ease-in-out",
-  Romantic: "background 0.8s ease-in-out, color 0.4s ease",
-  Cozy: "background 1.2s ease-in, color 0.6s linear",
-  Excited: "background 0.4s linear, color 0.3s ease-in-out",
-  Mysterious: "background 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), color 0.4s ease",
-  Focused: "background 0.9s ease, color 0.5s ease-in",
-  Dreamy: "background 1.5s ease-in-out, color 0.7s ease-in",
-  Energetic: "background 0.4s ease-out, color 0.2s ease-in-out",
 };
 
 const GlobalStyles = createGlobalStyle`
   body {
-    background: ${({ theme }) => theme.background};
+    background: ${({ theme }) => (theme.video ? "none" : theme.background)};
     color: ${({ theme }) => theme.color};
-    transition: ${({ theme }) => moodTransitions[theme.mood] || "background 0.7s ease, color 0.3s ease"};
+    transition: background 0.7s ease, color 0.3s ease;
+  }
+  iframe.bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
   }
 `;
 
@@ -70,6 +65,16 @@ const ThemeManager = ({ children }) => {
     <ThemeContext.Provider value={{ selectedMood, setSelectedMood }}>
       <StyledThemeProvider theme={theme}>
         <GlobalStyles />
+        {theme.video && (
+          <iframe
+            className="bg-video"
+            src={theme.background + "?autoplay=1&loop=1&controls=0&mute=1"}
+            frameBorder="0"
+            allow="autoplay; encrypted-media"
+            allowFullScreen
+            title="Rick Astley - Never Gonna Give You Up"
+          ></iframe>
+        )}
         {children}
       </StyledThemeProvider>
     </ThemeContext.Provider>
